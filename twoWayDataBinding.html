@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue JS</title>
+  <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
+  <script src="vue.js"></script>
+</head>
+<body>
+  <!-- <div id="root"></div> -->
+
+  <div id="app">
+    <input type="text" v-model="title">
+    <p>{{ title }}</p>
+    <hr/>
+
+    <button @click='counter++'>Increase</button>
+    <button v-on:click='counter--'>Decrease</button>
+    <button v-on:click='secondCounter++'>Increase Second</button>
+    <h4>{{ counter }} | {{ secondCounter }}</h4>
+    <h4>{{ result() }} | {{ output }}</h4>
+    <hr/>
+    <p>This is Link -> <a :href='link'>Google</a></p>
+  </div>
+
+  <script>
+  new Vue({
+    el: '#app',
+    data: {
+      title: 'Hello World!',
+      counter: 0,
+      secondCounter: 0,
+      link: 'http://google.com'
+    },
+    computed: {
+      output: function(){
+        console.log('Inside Computed');
+        return this.counter > 5 ? 'Greater than 5' : 'Less than 5';
+      }
+    },
+    watch: {
+      counter: function(){
+        var vm = this;
+        setTimeout(function() {
+          vm.counter = 0 ;
+        }, 2000);
+      }
+    },
+    methods: {
+      result: function(){
+        console.log('Inside Method');
+        return this.counter > 5 ? 'Greater than 5' : 'Less than 5';
+      }
+    }
+  });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue JS</title>
+  <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
+  <script src="vue.js"></script>
+</head>
+<body>
+  <!-- <div id="root"></div> -->
+
+  <div id="app">
+    <input type="text" v-on:input="changeTitle">
+    <p v-once>{{ title }} - <a v-bind:href="link">Click here to go to Google</a></p>
+    <hr/>
+    <h1>{{ sayCue() }}</h1>
+    <hr/>
+    <h2>{{ sayHello() }}</h2>
+
+    <hr/>
+    <p v-html='finishedLink'></p>
+
+    <hr/>
+    <button v-on:click='increase'>Click Me</button>
+    <h6>{{ counter }}</h6>
+
+    <hr/>
+    <button v-on:click='increaseWithStep(2, $event)'>Increase with Step</button>
+    <h6>{{ stepCounter }}</h6>
+
+    <hr/>
+    <p  v-on:mousemove='updateCoordinates'>
+      Pointer Coordinates : {{ x }}  /  {{ y }}
+      - <span v-on:mousemove="stopAction"> DEAD SPOT </span>
+    </p>
+
+    <h3>OR</h3>
+    <p  v-on:mousemove='updateCoordinates'>
+      Pointer Coordinates : {{ x }}  /  {{ y }}
+      - <span v-on:mousemove.stop> DEAD SPOT </span>
+    </p>
+    <hr/>
+
+      <input type="text" v-on:keyup.enter.space="alertMe">
+  </div>
+
+  <script>
+  new Vue({
+    el: '#app',
+    data: {
+      title: 'Hello World!',
+      link: 'http://google.com',
+      finishedLink: '<a href="http://facebook.com">Facebook</a>',
+      counter: 0,
+      stepCounter: 0,
+      x: 0,
+      y: 0
+    },
+    methods: {
+      changeTitle: function(event) {
+        this.title = event.target.value;
+      },
+
+      sayHello: function(){
+        this.title = 'Overwritten Value';
+        return this.title;
+      },
+
+      sayCue: function(){
+        return 'Cuelogic';
+      },
+
+      increase: function(){
+        this.counter++;
+      },
+
+      increaseWithStep: function(step, event){
+        this.stepCounter += step;
+      },
+
+      updateCoordinates: function(event){
+        this.x = event.clientX;
+        this.y = event.clientY;
+      },
+
+      stopAction: function(event){
+        event.stopPropagation();
+      },
+
+      alertMe:function(){
+        alert('This is an Alert');
+      }
+    }
+  });
+  </script>
+
+</body>
+</html>
