@@ -12,6 +12,7 @@
 
   <div id="app">
     <input type="text" v-on:input="changeTitle">
+    <p>{{ textInput }}</p>
     <p v-once>{{ title }} - <a v-bind:href="link">Click here to go to Google</a></p>
     <hr/>
     <h1>{{ sayCue() }}</h1>
@@ -49,6 +50,7 @@
   new Vue({
     el: '#app',
     data: {
+      textInput: 'Text Input',
       title: 'Hello World!',
       link: 'http://google.com',
       finishedLink: '<a href="http://facebook.com">Facebook</a>',
@@ -59,7 +61,7 @@
     },
     methods: {
       changeTitle: function(event) {
-        this.title = event.target.value;
+        this.textInput = event.target.value;
       },
 
       sayHello: function(){
