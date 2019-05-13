@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue JS</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="components-demo">
+    <my_component></my_component>
+    <hr>
+    <my_component></my_component>
+  </div>
+
+  <div id="components-demo1">
+    <my_component></my_component>
+    <hr>
+    <my_component></my_component>
+  </div>
+
+  <script>
+  // This is used to register components globally
+  // Vue.component('my_component', {});
+
+  // This is used to register components locally
+    var my_component = {
+      data: function(){
+        return {
+          status: 'In Progress'
+        }
+      },
+      methods: {
+        changeStauts: function(){
+          this.status = 'Completed'
+        }
+      },
+      template: '<p>Learning Status: {{ status }} : (<button @click="changeStauts">Change Status</button>)</p>'
+    };
+
+    new Vue({
+      el: '#components-demo',
+      components: {
+        'my_component': my_component
+      }
+    });
+
+    new Vue({
+      el: '#components-demo1',
+      // 'my_component': my_component
+    });
+  </script>
+
+</body>
+</html>

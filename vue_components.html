@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue JS</title>
+  <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="components-demo">
+    <my_component></my_component>
+    <hr>
+    <my_component></my_component>
+  </div>
+
+  <script>
+  // var data = {
+  //   status: 'In Progress'
+  // } ;
+
+
+  Vue.component('my_component', {
+    data: function(){
+      // return data; This will change all the instances of mentioned data if changes are done
+      return {
+        status: 'In Progress'
+      }
+    },
+    methods: {
+      changeStauts: function(){
+        this.status = 'Completed'
+      }
+    },
+    template: '<p>Learning Status: {{ status }} : (<button @click="changeStauts">Change Status</button>)</p>'
+  })
+
+  new Vue({ el: '#components-demo' })
+  </script>
+
+</body>
+</html>
